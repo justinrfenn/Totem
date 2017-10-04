@@ -153,6 +153,8 @@ namespace Totem.Runtime.Timeline
       Interlocked
         .Exchange(ref _pushSignal, null)
         ?.SetResult(null);
+
+      TimelineMetrics.QueueLength.Increment($"{point.Position}/{Key}");
     }
 
     async Task PushPoints()
@@ -176,6 +178,8 @@ namespace Totem.Runtime.Timeline
     {
       try
       {
+        TimelineMetrics.QueueLength.Decrement($"{point.Position}/{Key}");
+
         if(await FlowLoaded())
         {
           Point = point;

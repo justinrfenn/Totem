@@ -10,6 +10,7 @@ namespace Totem.Runtime.Timeline
   {
     public static readonly Duration TimeToObserve = new Duration();
 
+    internal static readonly Count QueueLength = new Count();
     internal static readonly Activity FlowActivity = new Activity();
     internal static readonly Duration WhenTime = new Duration();
     internal static readonly Duration GivenTime = new Duration();
